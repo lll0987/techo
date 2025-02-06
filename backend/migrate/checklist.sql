@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS checklist (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    topic INTEGER NOT NULL,
+    tag INTEGER,
+    start TEXT NOT NULL,
+    end TEXT NOT NULL,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    module TEXT NOT NULL
+);

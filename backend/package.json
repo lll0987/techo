@@ -1,0 +1,25 @@
+{
+    "name": "techo",
+    "version": "0.0.1",
+    "main": "dist/index.js",
+    "author": "sora",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "start": "tsc && node dist/index.js",
+        "test": "set NODE_ENV=test&&tsc && node dist/index.js"
+    },
+    "dependencies": {
+        "better-sqlite3": "^11.7.0",
+        "cors": "^2.8.5",
+        "cron-parser": "^4.9.0",
+        "express": "^4.21.2",
+        "typescript": "^5.7.2",
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.12",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0"
+    }
+}

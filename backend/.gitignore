@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+*.lock
+dist
+*.db
+*.sqlite
+test
+test.md
+disuse

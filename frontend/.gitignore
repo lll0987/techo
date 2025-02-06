@@ -1,0 +1,6 @@
+node_modules
+disuse
+*.lock
+*.http
+daisyui
+_tsconfig.json

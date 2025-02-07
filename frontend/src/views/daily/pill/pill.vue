@@ -27,12 +27,11 @@ import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 import type { IEventModel, IGoodsModel, TRecord } from '@/contracts';
 import { useEventApi, useGoodsApi, useOutApi } from '@/api';
-import { useDateStore } from '@/store';
+import { dailyTag, dailyTopic, useDateStore } from '@/store';
 import { useAlert } from '@/components';
 
-const topic = ref(4);
-const tag = ref(1);
-const length = ref(43200000);
+// TODO 存在哪里？
+const length = 43200000;
 // NEXT 拿药
 const unit = 15;
 
@@ -44,7 +43,7 @@ const { createOutEvent } = useOutApi();
 const goods = ref<TRecord<IGoodsModel>[]>();
 const checked = ref();
 const getGoods = async () => {
-    const [, data] = await listG({ tag: tag.value });
+    const [, data] = await listG({ tag: dailyTag.pill });
     goods.value = data;
     checked.value = data[0].code;
 };
@@ -57,8 +56,8 @@ const time = computed(() => {
 });
 const getEvent = async () => {
     const [, data] = await listE({
-        topic: topic.value,
-        tag: tag.value,
+        topic: dailyTopic.pill,
+        tag: dailyTag.pill,
         start: { gte: timestamp.value, lte: next.value }
     });
     event.value = data[0];
@@ -88,13 +87,13 @@ const handleConfirm = async () => {
     const h = Number(hour);
     const m = Number(minute);
     const s = dayjs(timestamp.value).hour(h).minute(m).valueOf();
-    const e = s + length.value;
+    const e = s + length;
     const item = goods.value?.find(i => i.code === checked.value)!;
     const [msg] = await createOutEvent({
         start: s,
         end: e,
-        topic: topic.value,
-        tags: [tag.value],
+        topic: dailyTopic.pill,
+        tags: [dailyTag.pill],
         grain: 0b01,
         items: [{ goods: item.id, quantity: 1 }]
     });

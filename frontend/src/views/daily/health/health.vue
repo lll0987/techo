@@ -20,16 +20,20 @@
 </template>
 
 <script setup lang="ts">
+import { dailyTopic } from '@/store';
 import { useHealthValue } from './useHealthValue';
-
-const weight_topic = 6;
-const step_topic = 7;
 
 const {
     inputValue: weight,
     onBlur: blurWeight,
     onInput: inputWeight,
     onKeydown: keydownWeight
-} = useHealthValue(weight_topic);
-const { inputValue: step, onBlur: blurStep, onInput: inputStep, onKeydown: keydownStep } = useHealthValue(step_topic);
+} = useHealthValue(dailyTopic.weight);
+
+const {
+    inputValue: step,
+    onBlur: blurStep,
+    onInput: inputStep,
+    onKeydown: keydownStep
+} = useHealthValue(dailyTopic.step);
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div :class="mode">
+    <div :class="theme">
         <alert-provider>
             <main bg-base-100 text-base-content h-screen flex>
                 <!-- 图表区 -->
@@ -46,13 +46,13 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useDateStore, useModeStore } from '@/store';
+import { useDateStore, useThemeStore } from '@/store';
 import { AlertProvider } from '@/components';
 import Calendar from '@/views/calendar';
 import Config from '@/views/config';
 import { Period, Mood, Sleep, Pill, Punch, Checklist, Bill, Shopping, Event, Food, Health } from '@/views/daily';
 
-const { mode } = useModeStore();
+const { theme } = useThemeStore();
 
 const { updateDate } = useDateStore();
 const handleToday = () => {

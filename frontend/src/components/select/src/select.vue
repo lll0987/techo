@@ -2,7 +2,7 @@
     <label ref="triggerEl" class="input-field">
         <span v-if="label" font-600>{{ label }}</span>
         <button
-            class="input"
+            class="input inline-flex items-center gap-1.5"
             :id="id"
             :popovertarget="popoverId"
             :disabled="disabled"

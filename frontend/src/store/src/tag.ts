@@ -4,6 +4,11 @@ import type { SelectItem } from '@/components/select';
 import { useTagApi } from '@/api/tag';
 import { useAlert } from '@/components';
 
+// TODO 改为存入数据库
+export const dailyTag: Record<string, number> = {
+    pill: 1
+};
+
 const tagList = ref<TRecord<ITagModel>[]>([]);
 const tagMap = computed(() =>
     tagList.value.reduce((acc, cur) => acc.set(cur.id, cur), new Map<number, TRecord<ITagModel>>())

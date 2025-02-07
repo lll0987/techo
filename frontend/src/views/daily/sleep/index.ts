@@ -6,8 +6,6 @@ export default Sleep;
 
 export type SleepForm = { start: number | null; end: number | null; id?: number };
 export interface SleepStore {
-    sleep_topic: number;
-    bed_topic: number;
     getSleepEvents: () => Promise<void>;
     getBedEvents: () => Promise<void>;
     editing: Ref<boolean>;

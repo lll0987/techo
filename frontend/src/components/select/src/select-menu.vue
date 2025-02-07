@@ -44,6 +44,5 @@ const popoverRef = ref<HTMLDivElement | null>(null);
 useEventListener(popoverRef, 'toggle', e => {
     const event = e as ToggleEvent;
     updateShow(event.newState === 'open');
-    console.log(event.newState);
 });
 </script>

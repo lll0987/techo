@@ -26,12 +26,10 @@
 
 <script setup lang="ts">
 import { provide, ref } from 'vue';
+import { dailyTopic } from '@/store';
 import Drawer from './drawer';
 import { useSleepValue } from './useSleepValue';
 import { SleepStoreKey } from '.';
-
-const sleep_topic = 1;
-const bed_topic = 2;
 
 const editing = ref(false);
 
@@ -44,7 +42,7 @@ const {
     handleAdd: handleAddSleep,
     handleEdit: handleEditSleep,
     handleValidate: handleValidateSleep
-} = useSleepValue(sleep_topic);
+} = useSleepValue(dailyTopic.sleep);
 
 // 躺着
 const {
@@ -55,7 +53,7 @@ const {
     handleAdd: handleAddBed,
     handleEdit: handleEditBed,
     handleValidate: handleValidateBed
-} = useSleepValue(bed_topic, false);
+} = useSleepValue(dailyTopic.bed, false);
 
 // 编辑
 const handleEdit = () => {
@@ -65,8 +63,6 @@ const handleEdit = () => {
 };
 
 provide(SleepStoreKey, {
-    sleep_topic,
-    bed_topic,
     getSleepEvents,
     getBedEvents,
     editing,

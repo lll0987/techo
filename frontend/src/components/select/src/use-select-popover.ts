@@ -18,21 +18,9 @@ export const useSelectPopover = () => {
     const id = useId().next();
     const popoverId = useId().next();
 
-    // show
-    const popoverState = ref(false);
-    const updateShow = (state: boolean) => {
-        popoverState.value = state;
-    };
-
-    // hide
-    const hidePopover = () => {
-        const popover = document.getElementById(popoverId);
-        popover?.hidePopover();
-    };
-
     // style
     const triggerEl = ref<HTMLDivElement | null>(null);
-    const { bottom, left, top, width } = useElementBounding(triggerEl);
+    const { bottom, left, top, width, update } = useElementBounding(triggerEl);
     const styles = computed(() => {
         const value: PopoverStyle = { left: left.value + 'px', width: width.value + 'px' };
         let t = bottom.value + gap;
@@ -43,6 +31,19 @@ export const useSelectPopover = () => {
         value.top = t + 'px';
         return value;
     });
+
+    // show
+    const popoverState = ref(false);
+    const updateShow = (state: boolean) => {
+        popoverState.value = state;
+        if (state) update();
+    };
+
+    // hide
+    const hidePopover = () => {
+        const popover = document.getElementById(popoverId);
+        popover?.hidePopover();
+    };
 
     return { id, popoverId, popoverState, updateShow, hidePopover, triggerEl, styles };
 };

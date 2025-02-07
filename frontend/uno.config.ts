@@ -28,6 +28,38 @@ export default defineConfig({
                 --color-error: oklch(75.1% .1814 22.37);
                 --color-error-content: oklch(35.1% .1814 22.37);
             }
+            [data-theme='dark'] {
+                --color-base-100: oklch(30.857% 0.023 264.149);
+                --color-base-200: oklch(28.036% 0.019 264.182);
+                --color-base-300: oklch(26.346% 0.018 262.177);
+                --color-base-content: oklch(82.901% 0.031 222.959);
+                --color-primary: oklch(86.133% 0.141 139.549);
+                --color-primary-content: oklch(17.226% 0.028 139.549);
+                --color-secondary: oklch(73.375% 0.165 35.353);
+                --color-secondary-content: oklch(14.675% 0.033 35.353);
+                --color-accent: oklch(74.229% 0.133 311.379);
+                --color-accent-content: oklch(14.845% 0.026 311.379);
+                --color-neutral: oklch(24.731% 0.02 264.094);
+                --color-neutral-content: oklch(82.901% 0.031 222.959);
+                --color-info: oklch(86.078% 0.142 206.182);
+                --color-info-content: oklch(17.215% 0.028 206.182);
+                --color-success: oklch(86.171% 0.142 166.534);
+                --color-success-content: oklch(17.234% 0.028 166.534);
+                --color-warning: oklch(86.163% 0.142 94.818);
+                --color-warning-content: oklch(17.232% 0.028 94.818);
+                --color-error: oklch(82.418% 0.099 33.756);
+                --color-error-content: oklch(16.483% 0.019 33.756);
+            }
+            *::-webkit-scrollbar {
+                width: 8px;
+            }
+            *::-webkit-scrollbar-thumb {
+                background: color-mix(in oklab, var(--color-base-content) 30%, transparent);
+                border-radius: 10px;
+            }
+            input[type='time']::-webkit-calendar-picker-indicator {
+                display: none;
+            }
           `
         }
     ],
@@ -65,11 +97,34 @@ export default defineConfig({
             'before:text-inherit',
             'after:content-[attr(data-quantity)]',
             'after:block',
-            'after:text-base-content',
             'after:text-xs'
         ],
         // 打卡子项
         'punch-item': ['border-b', 'border-base-300', 'pb-3', 'mb-3', 'last:border-none', 'last:p-0', 'last:m-0'],
+        config: [
+            'border-[color-mix(in_oklab,_var(--color-base-300),_black_3%)]',
+            'border-l-2',
+            'border-t-2',
+            'bg-base-300',
+            'rounded-tl-4',
+            'px-3',
+            'py-1.5',
+            'flex',
+            'items-center',
+            'justify-end',
+            'gap-1'
+        ],
+        'config-item': ['hover:bg-black/13', 'dark:hover:bg-white/8', 'rounded-full', 'p-1'],
+        'setting-item': [
+            'text-base-content',
+            'bg-base-100',
+            'border-[color-mix(in_oklab,_var(--color-base-content)_20%,_transparent)]',
+            'border-2',
+            'dark:border',
+            'hover:bg-black/13',
+            'rounded-full',
+            'p-1'
+        ],
         // 主题
         _topic: [
             'px-3',
@@ -82,10 +137,28 @@ export default defineConfig({
             'border-base-content',
             'border'
         ],
-        'topic-primary': ['_topic', 'bg-primary-content', 'text-primary'],
-        'topic-secondary': ['_topic', 'bg-secondary-content', 'text-secondary'],
-        'topic-accent': ['_topic', 'bg-accent-content', 'text-accent'],
-        'topic-neutral': ['_topic', 'bg-neutral-content', 'text-neutral'],
+        'topic-primary': [
+            '_topic',
+            'bg-primary-content',
+            'text-primary',
+            'dark:bg-primary',
+            'dark:text-primary-content'
+        ],
+        'topic-secondary': [
+            '_topic',
+            'bg-secondary-content',
+            'text-secondary',
+            'dark:bg-secondary',
+            'dark:text-secondary-content'
+        ],
+        'topic-accent': ['_topic', 'bg-accent-content', 'text-accent', 'dark:bg-accent', 'dark:text-accent-content'],
+        'topic-neutral': [
+            '_topic',
+            'bg-neutral-content',
+            'text-neutral',
+            'dark:bg-neutral',
+            'dark:text-neutral-content'
+        ],
         'topic-info': ['_topic', 'bg-info', 'text-info-content'],
         'topic-success': ['_topic', 'bg-success', 'text-success-content'],
         'topic-warning': ['_topic', 'bg-warning', 'text-warning-content'],
@@ -119,6 +192,7 @@ export default defineConfig({
             'after:font-600',
             'after:text-5',
             'after:text-base-100',
+            'dark:after:text-base-content',
             'after:bg-transparent',
             'after:rounded-2',
             'after:invisible',
@@ -163,8 +237,7 @@ export default defineConfig({
             'appearance-none',
             'bg-transparent',
             'border-transparent',
-            'border-2',
-            'dark:border'
+            'border-2'
         ],
         'btn-circle': ['rounded-full', 'p-0.5'],
         'btn-small': ['rounded-2', 'px-1.5', 'py-1'],
@@ -233,7 +306,6 @@ export default defineConfig({
             'whitespace-nowrap',
             'bg-base-100',
             'border-2',
-            'dark:border',
             'border-[color-mix(in_oklab,_var(--color-base-content)_20%,_transparent)]',
             'rounded-2',
             'focus:input-outline',
@@ -263,9 +335,9 @@ export default defineConfig({
             'm-0',
             'p-1.5',
             'overflow-y-auto',
+            'text-base-content',
             'bg-base-100',
             'border-2',
-            'dark:border',
             'border-base-content',
             'rounded-2'
         ],
@@ -290,7 +362,10 @@ export default defineConfig({
         'badge-soft': [
             'text-[oklch(20%_0_0)]',
             'bg-[color-mix(in_oklab,_oklch(20%_0_0)_8%,_var(--color-base-100))]',
-            'border-[color-mix(in_oklab,_oklch(20%_0_0)_10%,_var(--color-base-100))]'
+            'border-[color-mix(in_oklab,_oklch(20%_0_0)_10%,_var(--color-base-100))]',
+            'dark:text-neutral-content',
+            'dark:bg-neutral',
+            'dark:border-neutral'
         ],
         'badge-secondary': 'text-secondary-content bg-secondary border-secondary',
         'badge-accent': 'text-accent-content bg-accent border-accent',
@@ -328,8 +403,9 @@ export default defineConfig({
             'before:-translate-y-[0.2em]',
             'before:w-[0.5em]',
             'before:h-[0.5em]',
+            'before:rounded-full',
             'before:bg-secondary-content',
-            'before:rounded-full'
+            'dark:before:bg-secondary'
         ]
     },
     safelist: [
@@ -340,6 +416,7 @@ export default defineConfig({
         'tag-primary',
         'tag-secondary',
         'tag-accent',
+        'tag-neutral',
         'tag-info',
         'tag-success',
         'tag-warning',
@@ -348,6 +425,7 @@ export default defineConfig({
         'topic-primary',
         'topic-secondary',
         'topic-accent',
+        'topic-neutral',
         'topic-info',
         'topic-success',
         'topic-warning',

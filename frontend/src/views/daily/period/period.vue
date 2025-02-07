@@ -13,19 +13,18 @@
 import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 import type { IEventModel, TRecord } from '@/contracts';
-import { useDateStore } from '@/store';
+import { dailyTopic, useDateStore } from '@/store';
 import { useEventApi } from '@/api/event';
 import { useAlert } from '@/components';
 
-const topic = ref(5);
-const length = ref(518400000);
+const length = 518400000;
 
 const { timestamp, subscribe } = useDateStore();
 const { getMaxByTopic, create, update } = useEventApi();
 
 const event = ref<TRecord<IEventModel>>();
 const getEvent = async () => {
-    const [, data] = await getMaxByTopic({ topic: topic.value, start: { lte: timestamp.value } });
+    const [, data] = await getMaxByTopic({ topic: dailyTopic.period, start: { lte: timestamp.value } });
     event.value = data;
 };
 
@@ -63,9 +62,9 @@ const updateValue = async (e: Event) => {
     const result = flag.value
         ? update(event.value!.id!, { end: timestamp.value })
         : create({
-              topic: topic.value,
+              topic: dailyTopic.period,
               start: timestamp.value,
-              end: timestamp.value + length.value,
+              end: timestamp.value + length,
               grain: 0b11,
               tags: []
           });

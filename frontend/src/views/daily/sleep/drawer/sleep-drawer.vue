@@ -41,12 +41,11 @@ import { IconPlus } from '@tabler/icons-vue';
 import { Drawer, TimeRange, useAlert } from '@/components';
 import { DrawerHeader } from '@/components/drawer';
 import type { IEvent } from '@/contracts';
+import { dailyTopic } from '@/store';
 import { useEventApi } from '@/api';
 import { SleepStoreKey } from '..';
 
 const {
-    sleep_topic,
-    bed_topic,
     getSleepEvents,
     getBedEvents,
     editing,
@@ -95,8 +94,8 @@ const handleConfirm = async () => {
         return;
     }
     // 提交数据
-    const sleep_events = sleep_list.value.map(i => ({ ...i, grain, topic: sleep_topic, tags: [] })) as IEvent[];
-    const bed_events = bed_list.value.map(i => ({ ...i, grain, topic: bed_topic, tags: [] })) as IEvent[];
+    const sleep_events = sleep_list.value.map(i => ({ ...i, grain, topic: dailyTopic.sleep, tags: [] })) as IEvent[];
+    const bed_events = bed_list.value.map(i => ({ ...i, grain, topic: dailyTopic.bed, tags: [] })) as IEvent[];
     // TODO 更新
     const [msg] = await batchWrite([...sleep_events, ...bed_events]);
     if (msg) {

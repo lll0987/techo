@@ -1,87 +1,69 @@
 <template>
-    <section bg-primary rounded-tl-4 px-3 py-2 flex items-center justify-end gap-1>
-        <button
-            type="button"
-            title="标签"
-            class="btn p-1 rounded-full text-primary-content hover:bg-white/13"
-            @click="onClick('tag')"
-        >
-            <icon-tag size="1.25rem" />
-        </button>
-        <button
-            type="button"
-            title="主题"
-            class="btn p-1 rounded-full text-primary-content hover:bg-white/13"
-            @click="onClick('topic')"
-        >
-            <icon-bookmark size="1.25rem" />
-        </button>
-        <button
-            type="button"
-            title="切换到深色模式"
-            class="btn p-0.5 pl-2 rounded-full text-base-100 hover:bg-white/13"
-        >
-            <icon-sun size="1.75rem" />
-        </button>
-        <drawer v-model:show="show">
-            <div p-3>
-                <div flex gap-2 items-center mb-4>
-                    <h-select v-model="color" :options="colors" placeholder="请选择颜色" class="flex-1"></h-select>
-                    <label class="input-field flex-1">
-                        <input v-model="name" type="text" class="input" placeholder="请输入名称" />
+    <button type="button" title="标签" class="btn config-item" @click="onClick('tag')">
+        <icon-tag size="1.25rem" />
+    </button>
+    <button type="button" title="主题" class="btn config-item" @click="onClick('topic')">
+        <icon-bookmark size="1.25rem" />
+    </button>
+
+    <drawer v-model:show="show">
+        <div p-3>
+            <div flex gap-2 items-center mb-4>
+                <h-select v-model="color" :options="colors" placeholder="请选择颜色" class="flex-1"></h-select>
+                <label class="input-field flex-1">
+                    <input v-model="name" type="text" class="input" placeholder="请输入名称" />
+                </label>
+                <button type="button" class="btn btn-medium btn-primary" @click="onSubmit">添加</button>
+            </div>
+            <div flex flex-wrap gap-2>
+                <div
+                    v-for="item in list"
+                    :class="item.editing ? `${mod}-base` : `${mod}-${item.color}`"
+                    @dblclick="item.editing = true"
+                >
+                    <span v-show="!item.editing">{{ item.name }}</span>
+                    <h-select
+                        v-show="item.editing"
+                        v-model="item.color"
+                        :options="colors"
+                        placeholder="请选择颜色"
+                    ></h-select>
+                    <label v-show="item.editing" class="input-field">
+                        <input v-model="item.name" type="text" class="input" placeholder="请输入名称" />
                     </label>
-                    <button type="button" class="btn btn-medium btn-primary" @click="onSubmit">添加</button>
-                </div>
-                <div flex flex-wrap gap-2>
-                    <div
-                        v-for="item in list"
-                        :class="item.editing ? `${mod}-base` : `${mod}-${item.color}`"
-                        @dblclick="item.editing = true"
+                    <button
+                        v-show="item.editing"
+                        type="button"
+                        class="btn btn-circle btn-danger"
+                        @click="onRemove(item)"
                     >
-                        <span v-show="!item.editing">{{ item.name }}</span>
-                        <h-select
-                            v-show="item.editing"
-                            v-model="item.color"
-                            :options="colors"
-                            placeholder="请选择颜色"
-                        ></h-select>
-                        <label v-show="item.editing" class="input-field">
-                            <input v-model="item.name" type="text" class="input" placeholder="请输入名称" />
-                        </label>
-                        <button
-                            v-show="item.editing"
-                            type="button"
-                            class="btn btn-circle btn-danger"
-                            @click="onRemove(item)"
-                        >
-                            <icon-trash size="1.25rem" />
-                        </button>
-                        <button
-                            v-show="item.editing"
-                            type="button"
-                            class="btn btn-circle btn-positive"
-                            @click="onUpdate(item)"
-                        >
-                            <icon-check size="1.25rem" />
-                        </button>
-                        <button
-                            v-show="item.editing"
-                            type="button"
-                            class="btn btn-circle btn-default"
-                            @click="item.editing = false"
-                        >
-                            <icon-x size="1.25rem" />
-                        </button>
-                    </div>
+                        <icon-trash size="1.25rem" />
+                    </button>
+                    <button
+                        v-show="item.editing"
+                        type="button"
+                        class="btn btn-circle btn-positive"
+                        @click="onUpdate(item)"
+                    >
+                        <icon-check size="1.25rem" />
+                    </button>
+                    <button
+                        v-show="item.editing"
+                        type="button"
+                        class="btn btn-circle btn-default"
+                        @click="item.editing = false"
+                    >
+                        <icon-x size="1.25rem" />
+                    </button>
                 </div>
             </div>
-        </drawer>
-    </section>
+        </div>
+    </drawer>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { IconBookmark, IconCheck, IconTag, IconTrash, IconSun, IconX } from '@tabler/icons-vue';
+import { IconBookmark, IconCheck, IconTag, IconTrash, IconX } from '@tabler/icons-vue';
 import type { TRecord } from '@/contracts';
 import { useTagStore, useTopicStore } from '@/store';
 import { Drawer, HSelect, useAlert } from '@/components';

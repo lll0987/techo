@@ -1,6 +1,6 @@
 <template>
     <div flex flex-col gap-4 p-4>
-        <div inline-flex>
+        <div v-show="grains.length > 1" inline-flex>
             <button
                 v-for="(item, index) in grains"
                 type="button"
@@ -21,16 +21,16 @@
             <input type="date" class="input" :value="endStr" @input="onEndInput" />
         </label>
         <h-select label="主题" v-model="topic" :options="topicOptions"></h-select>
-        <h-select label="标签" v-model="tag" :options="tagOptions" multiple></h-select>
-        <label class="input-field">
+        <h-select v-show="fields.includes('tag')" label="标签" v-model="tag" :options="tagOptions" multiple></h-select>
+        <label v-show="fields.includes('value')" class="input-field">
             <span font-600>数值</span>
             <input type="text" class="input" :value="value" @input="onValueInput" @blur="onValueBlur" />
         </label>
-        <label class="input-field">
+        <label v-show="fields.includes('title')" class="input-field">
             <span font-600>标题</span>
             <input type="text" class="input" v-model="title" />
         </label>
-        <label class="input-field">
+        <label v-show="fields.includes('remark')" class="input-field">
             <span font-600>备注</span>
             <input type="text" class="input" v-model="remark" />
         </label>
@@ -38,10 +38,14 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue';
+import { inject, toRefs } from 'vue';
 import { HSelect, TimeRange } from '@/components';
 import { useTagStore, useTopicStore } from '@/store';
 import { EventFormDataKey, useEventForm } from './use-event-form';
+
+type KS = 'tag' | 'value' | 'title' | 'remark';
+const props = withDefaults(defineProps<{ fields?: KS[] }>(), { fields: () => ['remark', 'tag', 'title', 'value'] });
+const { fields } = toRefs(props);
 
 const {
     grains,

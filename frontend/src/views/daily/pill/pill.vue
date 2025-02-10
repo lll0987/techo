@@ -58,7 +58,8 @@ const getEvent = async () => {
     const [, data] = await listE({
         topic: dailyTopic.pill,
         tag: dailyTag.pill,
-        start: { gte: timestamp.value, lte: next.value }
+        start: { gte: timestamp.value, lte: next.value },
+        grain: 0b01
     });
     event.value = data[0];
 };

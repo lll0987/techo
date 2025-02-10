@@ -255,6 +255,18 @@ export default defineConfig({
             'border-[color-mix(in_oklab,_var(--color-primary),_black_5%)]',
             'hover:not-checked:bg-[color-mix(in_oklab,_var(--color-primary),_black_7%)]'
         ],
+        'btn-secondary': [
+            'text-secondary-content',
+            'bg-secondary',
+            'border-[color-mix(in_oklab,_var(--color-secondary),_black_5%)]',
+            'hover:not-checked:bg-[color-mix(in_oklab,_var(--color-secondary),_black_7%)]'
+        ],
+        'btn-accent': [
+            'text-accent-content',
+            'bg-accent',
+            'border-[color-mix(in_oklab,_var(--color-accent),_black_5%)]',
+            'hover:not-checked:bg-[color-mix(in_oklab,_var(--color-accent),_black_7%)]'
+        ],
         'btn-positive': [
             'text-success-content',
             'bg-success',
@@ -290,7 +302,8 @@ export default defineConfig({
             'w-full',
             'h-full',
             'inline-block',
-            'placeholder:text-placeholder'
+            'placeholder:text-placeholder',
+            'user-invalid:text-error'
         ],
         'input-outline': ['outline-2', 'outline-solid', 'outline-base-content', 'outline-offset-2'],
         'input-field': [

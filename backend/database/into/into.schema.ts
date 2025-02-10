@@ -31,7 +31,7 @@ export const intoEventSchema = eventSchema.extend({
             amount: number,
             unit_qty: number,
             goods: z.union([idSchema, goodsSchema]),
-            tag: idSchema.optional(),
+            tag: idSchema.nullable().optional(),
             specs: specs.optional(),
             remark: remark.optional()
         })

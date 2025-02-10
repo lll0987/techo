@@ -5,9 +5,9 @@ import Sleep from './sleep';
 import Punch from './punch';
 import Checklist from './checklist';
 import Bill from './bill';
-import Shopping from './shopping';
+import Trade from './trade';
 import Event from './event';
 import Food from './food';
 import Health from './health';
 
-export { Period, Mood, Pill, Sleep, Punch, Checklist, Bill, Shopping, Event, Food, Health };
+export { Period, Mood, Pill, Sleep, Punch, Checklist, Bill, Trade, Event, Food, Health };

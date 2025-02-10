@@ -1,5 +1,5 @@
-import { IEventModel } from '../event/event';
-import { IGoods } from '../goods/goods';
+import { IEvent } from './event';
+import { IGoods } from './goods';
 
 export interface IIntoModel {
     // 详情

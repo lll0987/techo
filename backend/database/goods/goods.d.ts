@@ -1,3 +1,5 @@
+import type { TRecord } from '../base/database';
+
 export interface IGoodsModel {
     // 名称
     name: string;

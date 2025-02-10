@@ -6,9 +6,9 @@ import { useDateStore } from '@/store';
 
 const grains = ['时间', '时间范围', '日期', '日期范围'];
 
-export const useEventForm = () => {
+export const useEventForm = (grainOption?: TEventGrain) => {
     // 颗粒度
-    const grain = ref<TEventGrain>(0);
+    const grain = ref<TEventGrain>(grainOption || 0);
     const updateGrain = (index: number) => {
         grain.value = index as TEventGrain;
     };
@@ -67,7 +67,7 @@ export const useEventForm = () => {
     };
 
     return {
-        grains,
+        grains: grainOption === undefined ? grains : [grains[grainOption]],
         grain,
         updateGrain,
         start,

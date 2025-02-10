@@ -9,7 +9,7 @@
                     <Checklist />
                     <Punch />
                     <Bill />
-                    <Shopping />
+                    <Trade />
                     <Event />
                     <Food />
                 </div>
@@ -50,7 +50,7 @@ import { useDateStore, useThemeStore } from '@/store';
 import { AlertProvider } from '@/components';
 import Calendar from '@/views/calendar';
 import Config from '@/views/config';
-import { Period, Mood, Sleep, Pill, Punch, Checklist, Bill, Shopping, Event, Food, Health } from '@/views/daily';
+import { Period, Mood, Sleep, Pill, Punch, Checklist, Bill, Trade, Event, Food, Health } from '@/views/daily';
 
 const { theme } = useThemeStore();
 

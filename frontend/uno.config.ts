@@ -175,6 +175,59 @@ export default defineConfig({
         'tag-warning': ['_tag', 'bg-warning', 'text-warning-content'],
         'tag-error': ['_tag', 'bg-error', 'text-error-content'],
         'tag-base': ['_tag', 'bg-base-300', 'text-base-content'],
+        // 图表
+        'chart-col-cell': [
+            'transition-colors',
+            'rounded-2',
+            'text-center',
+            'leading-none',
+            'flex',
+            'flex-col',
+            'justify-evenly',
+            'm-1',
+            'h-[calc(100%_-_0.5rem)]'
+        ],
+        'chart-row-cell': [
+            'flex',
+            'items-start',
+            'justify-center',
+            'text-3.5',
+            'relative',
+            'before:content-empty',
+            'before:absolute',
+            'before:top-0',
+            'before:right-2',
+            'before:w-screen',
+            'before:h-[1px]',
+            'before:bg-base-200',
+            'before:z-0'
+        ],
+        'chart-corner': [],
+        'chart-cell': ['relative', 'z-1'],
+        'chart-bar': [
+            'border-base-content',
+            'border',
+            'rounded-2.5',
+            'absolute',
+            'left-1/4',
+            'w-1/2',
+            'top-0',
+            'h-full'
+        ],
+        'chart-primary': ['bg-primary-content', 'text-primary', 'dark:bg-primary', 'dark:text-primary-content'],
+        'chart-secondary': [
+            'bg-secondary-content',
+            'text-secondary',
+            'dark:bg-secondary',
+            'dark:text-secondary-content'
+        ],
+        'chart-accent': ['bg-accent-content', 'text-accent', 'dark:bg-accent', 'dark:text-accent-content'],
+        'chart-neutral': ['bg-neutral-content', 'text-neutral', 'dark:bg-neutral', 'dark:text-neutral-content'],
+        'chart-info': ['bg-info', 'text-info-content'],
+        'chart-success': ['bg-success', 'text-success-content'],
+        'chart-warning': ['bg-warning', 'text-warning-content'],
+        'chart-error': ['bg-error', 'text-error-content'],
+        'chart-base': ['bg-base-300', 'text-base-content'],
         // 次级文字
         'secondary-text': 'text-[color-mix(in_oklab,_var(--color-base-content)_50%,_transparent)]',
         // 卡片
@@ -443,7 +496,16 @@ export default defineConfig({
         'topic-success',
         'topic-warning',
         'topic-error',
-        'topic-base'
+        'topic-base',
+        'chart-primary',
+        'chart-secondary',
+        'chart-accent',
+        'chart-neutral',
+        'chart-info',
+        'chart-success',
+        'chart-warning',
+        'chart-error',
+        'chart-base'
     ],
     rules: [
         ['user-select-none', { 'user-select': 'none' }],

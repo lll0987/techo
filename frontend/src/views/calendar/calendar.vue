@@ -50,12 +50,14 @@ import { IconChevronLeft, IconChevronRight, IconChevronsLeft, IconChevronsRight 
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import localeData from 'dayjs/plugin/localeData';
+import weekday from 'dayjs/plugin/weekday';
 dayjs.extend(localeData);
+dayjs.extend(weekday);
 
 import { useDateStore } from '@/store';
 
-const instanceLocaleData = dayjs().locale('zh-cn').localeData();
-const weekdays = instanceLocaleData.weekdaysMin();
+const [su, ...ws] = dayjs().locale('zh-cn').localeData().weekdaysMin();
+const weekdays = [...ws, su];
 
 const { timestamp, updateDate, subscribe } = useDateStore();
 
@@ -64,7 +66,7 @@ const updateValue = (timestamp: number) => {
     day.value = timestamp;
 };
 
-const beforedays = computed(() => dayjs(day.value).date(1).day());
+const beforedays = computed(() => dayjs(day.value).locale('zh-cn').date(1).weekday());
 const days = computed(() => dayjs(day.value).daysInMonth());
 const selected = computed(() => dayjs(timestamp.value).isSame(day.value, 'day'));
 const selectdate = computed(() => dayjs(day.value).date());

@@ -3,7 +3,7 @@
         <alert-provider>
             <main bg-base-100 text-base-content h-screen flex>
                 <!-- 图表区 -->
-                <div flex-1></div>
+                <Chart flex-1></Chart>
                 <!-- 内容区 -->
                 <div w-80 flex flex-col gap-3 py-1.5>
                     <Checklist />
@@ -50,6 +50,7 @@ import { useDateStore, useThemeStore } from '@/store';
 import { AlertProvider } from '@/components';
 import Calendar from '@/views/calendar';
 import Config from '@/views/config';
+import Chart from '@/views/chart';
 import { Period, Mood, Sleep, Pill, Punch, Checklist, Bill, Trade, Event, Food, Health } from '@/views/daily';
 
 const { theme } = useThemeStore();
